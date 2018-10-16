@@ -1,0 +1,59 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+plugins {
+    // Use the Spring Boot Gradle plugin
+    id 'org.springframework.boot' version '2.0.5.RELEASE'
+}
+
+// The Java plugin allows us to compile and package our code into a jar file
+apply plugin: 'java'
+
+apply plugin: 'io.spring.dependency-management'
+
+// Define the namespace for our build artifacts (replace with your own group)
+group 'atc'
+
+// Explicitly declare that we're using JDK 1.10
+sourceCompatibility = 1.10
+
+
+repositories {
+    // Use Maven Central to resolve all 3rd party dependencies
+    mavenCentral()
+}
+
+dependencies {
+    // Enable Spring MVC
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+
+    // Spring Security
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'
+
+    // OpenAPI (aka Swagger)
+    compile 'io.springfox:springfox-swagger2:2.9.2'
+
+    // Package the javax.xml.bind module (required for JDK 9+)
+    runtime 'javax.xml.bind:jaxb-api:2.3.0'
+
+    // Testing with JUnit 5
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.1.0'
+
+}
+
+
+// Configure the spring boot executable jar
+bootJar {
+	launchScript()
+}
+
+
+// Configure the Gradle wrapper
+wrapper {
+    gradleVersion = '4.9'
+}
+

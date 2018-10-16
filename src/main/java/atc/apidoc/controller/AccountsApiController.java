@@ -1,12 +1,36 @@
-# Springfox Code Sample Annotations
-Easily add code samples to your Springfox + ReDoc API documentation with these annotations and 
-Springfox extension.
+package atc.apidoc.controller;
 
-Idea courtesy of 
+import atc.apidoc.docs.ApiCodeSample;
+import atc.apidoc.docs.ApiCodeSamples;
+import atc.apidoc.model.Account;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-## Usage
+import javax.validation.Valid;
 
-```java
+
+@Api( tags = { "Accounts" } )
+@RestController
+public class AccountsApiController
+{
+    private static final Logger LOGGER = LoggerFactory.getLogger( AccountsApiController.class );
+
+
+
     @ApiOperation( value = "Create account",
                    nickname = "createAccount",
                    notes = "Create a new account",
@@ -45,7 +69,7 @@ Idea courtesy of
                                    "  .addHeader(\"authorization\", \"Basic am9objpqb2hu...\")\n" +
                                    "  .build();\n" +
                                    "\n" +
-                                   "Response response = client.newCall(request).execute();")
+                                   "Response response = client.newCall(request).execute();" )
     } )
     @ResponseStatus( HttpStatus.CREATED )
     @RequestMapping( value = "/accounts",
@@ -60,17 +84,4 @@ Idea courtesy of
 
         return new ResponseEntity<>( account, HttpStatus.CREATED );
     }
-```
-
-## ReDoc Output
-
-![ReDoc Sample](redoc-screenshot.png)
-
-
-## Live Example
-
-If you'd like to see the full ReDoc example, just start the app server and
-then visit http://localhost:8080/index.html.
-```
-./gradlew bootRun
-```
+}
