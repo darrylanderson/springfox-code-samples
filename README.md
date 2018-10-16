@@ -2,7 +2,7 @@
 Easily add code samples to your Springfox + ReDoc API documentation with these annotations and 
 Springfox extension.
 
-Idea courtesy of 
+Idea courtesy of https://github.com/hugol1ma. (https://github.com/Rebilly/ReDoc/issues/376#issuecomment-353964455).
 
 ## Usage
 
